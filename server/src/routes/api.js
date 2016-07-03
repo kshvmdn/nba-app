@@ -4,23 +4,28 @@ import getFreeAgentData from '../helpers/get-free-agent-data';
 const router = express.Router();
 
 router.get('/:year', (req, res, next) => {
-  getFreeAgentData(req.params.year)
-    .then((response) => {
-      response.meta.status = 200;
-      response.meta.message = 'OK';
+  res.send(`GET /${req.params.year}`)
+})
 
-      res.json(response);
-    })
-    .catch((err) => next(err));
+router.get('/:year/by/name/:name', (req, res, next) => {
+  res.send(`GET /${req.params.year}/by/name/${req.params.name}`)
+});
+
+router.get('/:year/by/old_team/:team', (req, res, next) => {
+  res.send(`GET /${req.params.year}/by/old_team/${req.params.team}`)
+});
+
+router.get('/:year/by/new_team/:team', (req, res, next) => {
+  res.send(`GET /${req.params.year}/by/new_team/${req.params.team}`)
 });
 
 router.get('/', (req, res, next) => {
   res.json({
     endpoints: {
       full: '/:year',
-      by_name: '/:year/:name',
-      by_old_team: '/:year/:team',
-      by_new_team: '/:year/:team'
+      by_name: '/:year/by/name/:name',
+      by_old_team: '/:year/by/old_team/:team',
+      by_new_team: '/:year/by/new_team/:team'
     },
     meta: {
       status: 200,

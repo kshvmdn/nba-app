@@ -1,9 +1,13 @@
 import express from 'express';
-const app = express();
+import morgan from 'morgan';
 
 import routes from './routes';
+import getFreeAgentData from './helpers/get-free-agent-data';
+
+const app = express();
 const port = process.env.PORT || 3000;
 
+app.use(morgan('dev'));
 app.use('/', routes);
 
 app.use((req, res, next) => {
