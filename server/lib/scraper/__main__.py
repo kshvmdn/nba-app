@@ -15,6 +15,4 @@ if len(sys.argv) > 2:
     with open(sys.argv[2], 'w') as f:
         f.write(dump)
 
-    print(dump)
-else:
-    print(dump)
+print(dump)
