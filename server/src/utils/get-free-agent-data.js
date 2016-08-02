@@ -11,7 +11,7 @@ function parseResponse (response) {
 
     const { metaData, listHead, listData, listFoot } = data;
 
-    const lastUpdated = moment(metaData.lastModified, "MM/DD/YYYY").format('YYYY-MM-DD');
+    const lastUpdated = moment(metaData.lastModified, "MM/DD/YYYY").toISOString()
 
     const optionMap = {};
 
