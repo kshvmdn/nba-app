@@ -1,12 +1,12 @@
 import express from 'express';
 import morgan from 'morgan';
 
-import routes from './routes';
+import api from './api';
 
 const app = express();
 
 app.use(morgan('dev'));
-app.use('/', routes);
+app.use('/api', api);
 
 const port = process.env.PORT || 3001;
 const address = process.env.ADDRESS || '127.0.0.1';

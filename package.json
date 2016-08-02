@@ -7,11 +7,11 @@
     "url": "https://github.com/kshvmdn/nba-free-agent-tracker.git"
   },
   "scripts": {
-    "build": "npm run clean && babel server/src/ -d server/dist/",
-    "build:watch": "npm run clean && babel server/src/ -d server/dist/ --watch",
-    "clean": "rimraf server/dist/",
-    "start": "npm run build && node server/dist .",
-    "watch": "nodemon server/dist ."
+    "build": "npm run clean && babel server/src/ -d server/lib/",
+    "build:watch": "npm run clean && babel server/src/ -d server/lib/ --watch",
+    "clean": "rimraf server/lib/",
+    "start": "npm run build && node server/lib .",
+    "watch": "nodemon server/lib ."
   },
   "keywords": [],
   "author": "Kashav Madan <kshvmdn@gmail.com> (kshvmdn.me)",

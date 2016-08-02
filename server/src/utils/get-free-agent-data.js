@@ -4,47 +4,54 @@ import moment from 'moment';
 const BASE_URL = 'http://www.nba.com/.element/json/1.1/sect/freeagents';
 
 function parseResponse (response) {
-  const { status, statusText, headers, config, request, data } = response;
-  const { metaData, listHead, listData, listFoot } = data;
+  return new Promise((resolve, reject) => {
+    const { status, statusText, headers, config, request, data } = response;
 
-  const lastUpdated = moment(metaData.lastModified, "MM/DD/YYYY").format('YYYY-MM-DD');
+    if (!data) return reject(new Error('Couldn\'t get data'));
 
-  const optionMap = {};
+    const { metaData, listHead, listData, listFoot } = data;
 
-  listFoot.forEach((el) => {
-    let match = el.match(/\*\*?\*?/g);
-    optionMap[match] = el.split(match)[1].replace(/option/i, '').trim();
-  });
+    const lastUpdated = moment(metaData.lastModified, "MM/DD/YYYY").format('YYYY-MM-DD');
 
-  const parsed = listData.map((obj) => {
-    let updated = {};
-    let option = null;
+    const optionMap = {};
 
-    for (let prop in obj) {
-      let k = listHead[prop].toLowerCase().trim().replace(/ /g, '_');
-      let v = obj[prop];
+    listFoot.forEach((el) => {
+      let match = el.match(/\*\*?\*?/g);
+      optionMap[match] = el.split(match)[1].replace(/option/i, '').trim();
+    });
 
-      if (!v || v === '---') v = '';
+    const parsed = listData.map((obj) => {
+      let updated = {};
+      let option = null;
 
-      let match = v.match(/\*\*?\*?/g);
-      if (match) {
-        option = optionMap[match];
-        v = v.replace(match, '');
+      for (let prop in obj) {
+        let k = listHead[prop].toLowerCase().trim().replace(/ /g, '_');
+        let v = obj[prop];
+
+        if (!v || v === '---') v = '';
+
+        let match = v.match(/\*\*?\*?/g);
+        if (match) {
+          option = optionMap[match];
+          v = v.replace(match, '');
+        }
+
+        updated[k] = v || null;
       }
 
-      updated[k] = v || null;
-    }
+      updated['contract_option'] = option;
+      return updated;
+    });
 
-    updated['contract_option'] = option;
-    return updated;
+    return resolve({
+      meta: {
+        updated: lastUpdated,
+        status,
+        message: statusText
+      },
+      data: parsed
+    });
   });
-
-  return {
-    meta: {
-      last_updated: lastUpdated
-    },
-    data: parsed
-  };
 }
 
 export default function getFreeAgentData (year, cb) {

@@ -1,9 +1,15 @@
 import { Router } from 'express';
-import api from './api';
+import getFreeAgentData from './utils/get-free-agent-data';
 
-const router = Router();
+const router = new Router();
 
-router.use('/api', api);
+router.get('/list/:year', (req, res, next) => {
+  getFreeAgentData(req.params.year, (err, resp) => {
+    if (err) return next(err);
+
+    res.json(resp);
+  });
+});
 
 router.use((req, res, next) => {
   const err = new Error('Not Found');
