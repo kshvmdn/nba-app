@@ -7,17 +7,15 @@ function parseResponse (response) {
   return new Promise((resolve, reject) => {
     const { status, statusText, headers, config, request, data } = response;
 
-    if (!data) return reject(new Error('Couldn\'t get data'));
+    if (!data) return reject(new Error('Failed to fetch data.'));
 
     const { metaData, listHead, listData, listFoot } = data;
 
-    const lastUpdated = moment(metaData.lastModified, "MM/DD/YYYY").toISOString()
+    const contractOptions = {};
 
-    const optionMap = {};
-
-    listFoot.forEach((el) => {
-      let match = el.match(/\*\*?\*?/g);
-      optionMap[match] = el.split(match)[1].replace(/option/i, '').trim();
+    listFoot.forEach((v) => {
+      let m = v.match(/\*\*?\*?/g);
+      contractOptions[m] = v.split(m)[1].replace(/option/i, '').trim();
     });
 
     const parsed = listData.map((obj) => {
@@ -32,7 +30,7 @@ function parseResponse (response) {
 
         let match = v.match(/\*\*?\*?/g);
         if (match) {
-          option = optionMap[match];
+          option = contractOptions[match];
           v = v.replace(match, '');
         }
 
@@ -45,7 +43,7 @@ function parseResponse (response) {
 
     return resolve({
       meta: {
-        updated: lastUpdated,
+        updated: moment(metaData.lastModified, "MM/DD/YYYY").toISOString(),
         status,
         message: statusText
       },
