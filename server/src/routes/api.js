@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import getFreeAgentData from '../helpers/get-free-agent-data';
+import getFreeAgentData from '../utils/get-free-agent-data';
 
 const router = new Router();
 
