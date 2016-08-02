@@ -1,20 +1,23 @@
-import express from 'express';
+import { Router } from 'express';
 import api from './api';
 
-const router = express.Router();
+const router = Router();
 
 router.use('/api', api);
 
-router.get('/', (req, res, next) => {
-  res.json({
-    endpoints: {
-      api: '/api'
-    },
-    meta: {
-      status: 200,
-      message: 'OK'
-    }
-  })
-})
+router.use((req, res, next) => {
+  const err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
+router.use((err, req, res, next) => {
+  const status = err && err.status ? err.status : 500;
+  const message = err && err.message ? err.message : 'Unexpected Error';
+
+  res.status(status).json({
+    error: { status, message }
+  });
+});
 
 export default router;

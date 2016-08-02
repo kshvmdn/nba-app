@@ -1,10 +1,8 @@
-import json
 import re
+import requests
+
 from collections import OrderedDict
 from datetime import datetime
-from pprint import pprint
-
-import requests
 
 BASE = 'http://www.nba.com/.element/json/1.1/sect/freeagents/freeagents%s.json'
 
@@ -54,11 +52,3 @@ def parse(resp):
         docs['data'].append(doc)
 
     return docs
-
-
-if __name__ == '__main__':
-    import sys
-
-    year = sys.argv[1] if sys.argv.__len__ > 1 else '2016'
-    with open('out.json', 'w') as f:
-        f.write(json.dumps(scrape(year), indent=2, sort_keys=True))

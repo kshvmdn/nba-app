@@ -1,30 +1,57 @@
-import PythonShell from 'python-shell';
+import axios from 'axios';
+import moment from 'moment';
 
-export default function getFreeAgentData (year) {
-  const options = {
-    mode: 'json',
-    scriptPath: './server/lib/scraper',
-    args: [year, `./server/.data/${year}.json`]
-  };
+const BASE_URL = 'http://www.nba.com/.element/json/1.1/sect/freeagents';
 
-  const script = ''; // __main__.py
+function parseResponse (response) {
+  const { status, statusText, headers, config, request, data } = response;
+  const { metaData, listHead, listData, listFoot } = data;
 
-  return new Promise((resolve, reject) => {
-    try {
-      PythonShell.run(script, options, (err, results) => {
-        if (err) return reject(err);
+  const lastUpdated = moment(metaData.lastModified, "MM/DD/YYYY").format('YYYY-MM-DD');
 
-        if (!results || !results[0]) {
-          let e = new Error('Failed to retrieve data.');
-          e.status = 404;
+  const optionMap = {};
 
-          return reject(e);
-        }
-
-        return resolve(results[0]);
-      });
-    } catch(e) {
-      return reject(e);
-    }
+  listFoot.forEach((el) => {
+    let match = el.match(/\*\*?\*?/g);
+    optionMap[match] = el.split(match)[1].replace(/option/i, '').trim();
   });
+
+  const parsed = listData.map((obj) => {
+    let updated = {};
+    let option = null;
+
+    for (let prop in obj) {
+      let k = listHead[prop].toLowerCase().trim().replace(/ /g, '_');
+      let v = obj[prop];
+
+      if (!v || v === '---') v = '';
+
+      let match = v.match(/\*\*?\*?/g);
+      if (match) {
+        option = optionMap[match];
+        v = v.replace(match, '');
+      }
+
+      updated[k] = v || null;
+    }
+
+    updated['contract_option'] = option;
+    return updated;
+  });
+
+  return {
+    meta: {
+      last_updated: lastUpdated
+    },
+    data: parsed
+  };
+}
+
+export default function getFreeAgentData (year, cb) {
+  if (!year) year = moment().year();
+
+  axios.get(`${BASE_URL}/freeagents${year}.json`)
+    .then((resp) => parseResponse(resp))
+    .then((parsed) => cb(null, parsed))
+    .catch((e) => cb(e));
 }
