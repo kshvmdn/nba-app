@@ -7,23 +7,23 @@ router.get('/list/:year', (req, res, next) => {
   getFreeAgentData(req.params.year, (err, resp) => {
     if (err) return next(err);
 
-    res.json(resp);
+    res.status(201).json(resp);
   });
 });
 
 router.use((req, res, next) => {
-  const err = new Error('Not Found');
+  let err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 router.use((err, req, res, next) => {
-  const status = err && err.status ? err.status : 500;
-  const message = err && err.message ? err.message : 'Unexpected Error';
+  let response = {
+    status = err.status || 500,
+    message = err.message || 'Unexpected Error'
+  };
 
-  res.status(status).json({
-    error: { status, message }
-  });
+  res.status(response.status).json({ error: response })
 });
 
 export default router;
