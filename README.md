@@ -1,1 +1,1 @@
-## nba-free-agent-tracker
+## nba-player-tracker
