@@ -21,18 +21,9 @@ export default class Player extends Component {
   constructor(props) {
     super(props);
 
-    console.log(props.player);
-
     this.state = {
       errors: {}
     }
-  }
-
-  componentWillMount() {
-  }
-
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
   }
 
   handleLinkPress(link) {
