@@ -8,21 +8,21 @@ export default class Toolbar extends Component {
   }
 
   onActionSelected(idx) {
-    this.props.actions[idx].fn()
+    if (!this.props.actions || !this.props.actions.hasOwnProperty(idx))
+      return;
+
+    this.props.actions[idx].fn();
   }
 
   render() {
-    let actions = [];
-
     return (
       <Icon.ToolbarAndroid
-        actions={this.props.actions || actions}
         onActionSelected={this.onActionSelected.bind(this)}
         style={s.toolbar}
+        subtitleColor={'#fff'}
         title={this.props.title || 'NBA Player Tracker'}
-        subtitle={this.props.subtitle || ''}
         titleColor={'#fff'}
-        subtitleColor={'#fff'} />
+        {...this.props} />
     );
   }
 }
@@ -30,6 +30,6 @@ export default class Toolbar extends Component {
 const s = StyleSheet.create({
   toolbar: {
     height: 60,
-    backgroundColor: '#1F6CB0'
-  }
+    backgroundColor: '#1F6CB0',
+  },
 })

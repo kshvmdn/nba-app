@@ -18,47 +18,44 @@ export default class Filter extends Component {
     super(props);
 
     this.state = {
-      selectedTeams: this.props.selectedTeams || [],
-      selectedPositions: this.props.selectedPositions || []
+      selected: this.props.selected,
+      backIcon: null,
     };
   }
 
-  popAndSavedSelected() {
-    let selected = this.props.optionType === 'Teams'
-      ? this.state.selectedTeams
-      : this.state.selectedPositions;
+  componentWillMount() {
+    Icon.getImageSource('arrow-back', 25, 'white').then(source => this.setState({ backIcon: source }));
+  }
 
-    this.props.update(selected);
+  componentWillReceiveProps(nextProps) {
+    this.setState({ selected: nextProps.selected })
+  }
+
+  popAndSavedSelected() {
+    this.props.update(this.state.selected);
     Actions.pop();
   }
 
   handleRowSelect(selection) {
-    let selected = this.props.optionType === 'Teams'
-      ? this.state.selectedTeams
-      : this.state.selectedPositions;
-    let key = `selected${this.props.optionType}`
+    let { selected } = this.state;
     let index = selected.indexOf(selection);
 
     if (index === -1)
-      return this.setState({ [key]: [selection, ...selected] })
+      return this.setState({ selected: [selection, ...selected] })
 
     selected.splice(index, 1)
-    this.setState({ [key]: selected }, () => console.log(this.state))
+    this.setState({ selected })
   }
 
   renderRow(rowData, sectionId, rowId, highlightRow) {
-    let selection, selected;
-
-    if (this.props.optionType === 'Teams') {
-      selection = rowData.abbr;
-      selected = this.state.selectedTeams;
-    } else if (this.props.optionType === 'Positions') {
-      selection = rowData.name;
-      selected = this.state.selectedPositions;
-    }
+    let selection = this.props.optionType === 'Teams'
+      ? rowData.abbr
+      : this.props.optionType === 'Positions'
+        ? rowData.name
+        : null;
 
     return (
-      <TouchableHighlight onPress={() => this.handleRowSelect(selection)}>
+      <TouchableHighlight onPress={this.handleRowSelect.bind(this, selection)}>
         <View style={s.row}>
           {this.props.optionType === 'Teams' && <Image
             style={s.rowImage}
@@ -66,8 +63,8 @@ export default class Filter extends Component {
 
           <Text style={s.rowText}>{rowData.name}</Text>
 
-          {selected.includes(selection) && <View style={s.rowSelectedIndicator}>
-            <Icon name="done" size={15} color={'#1F6CB0'} />
+          {this.state.selected.includes(selection) && <View style={s.rowSelectedIndicator}>
+            <Icon name='done' size={15} color={'#1F6CB0'} />
           </View>}
         </View>
       </TouchableHighlight>
@@ -93,11 +90,17 @@ export default class Filter extends Component {
     let ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     let source = this.props.optionType === 'Teams'
       ? c.TEAMS
-      : c.POSITIONS;
+      : this.props.optionType === 'Positions'
+        ? c.POSITIONS
+        : null;
 
     return (
       <View style={s.container}>
-        <Toolbar subtitle={this.props.optionType} actions={actions} />
+        <Toolbar
+          actions={actions}
+          onIconClicked={Actions.pop.bind(this)}
+          navIcon={this.state.backIcon}
+          subtitle={this.props.optionType} />
         <ListView
           dataSource={ds.cloneWithRows(source)}
           enableEmptySections={true}

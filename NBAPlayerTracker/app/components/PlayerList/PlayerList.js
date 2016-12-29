@@ -7,6 +7,7 @@ import {
   TouchableHighlight,
   View,
 } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 import * as c from '../../constants'
 
@@ -21,8 +22,6 @@ export default class PlayerList extends Component {
       ds: ds.cloneWithRows(props.data),
       searchText: '',
     }
-
-    console.log(props.data)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -36,7 +35,9 @@ export default class PlayerList extends Component {
 
   renderRow(rowData, sectionId, rowId, highlightRow) {
     return (
-      <TouchableHighlight onPress={() => console.log(rowData)} underlayColor={'#fff'}>
+      <TouchableHighlight
+        onPress={() => Actions.playerCard({ player: rowData })}
+        underlayColor={'#fff'}>
         <View style={s.row}>
           <Image
             style={[s.rowImage, s.playerHeadshot]}
@@ -125,15 +126,13 @@ const s = StyleSheet.create({
     color: '#777',
   },
   playerMetaTextDivider: {
-    marginHorizontal: 8,
-    fontSize: 16,
+    marginHorizontal: 6,
+    fontSize: 18,
     color: '#666',
-    fontWeight: 'bold',
+    fontFamily: 'sans-serif-light',
   },
   logoContainer: {
     flex: 1,
     alignItems: 'flex-end',
-  },
-  playerTeamLogo: {
   },
 });
