@@ -62,28 +62,29 @@ const s = StyleSheet.create({
     paddingVertical: 30,
   },
   entries: {
-    marginVertical: -0.5,
+    marginVertical: -0.25,
   },
   entry: {
     backgroundColor: '#eee',
     padding: 10,
-    marginVertical: 0.5,
+    paddingVertical: 15,
+    marginVertical: 0.25,
   },
   caption: {
-    fontSize: 16,
+    fontSize: 14,
     fontFamily: 'sans-serif-medium',
     lineHeight: 25,
-    color: '#222',
+    color: '#333',
   },
   date: {
     fontSize: 14,
     fontFamily: 'sans-serif-light',
     marginVertical: 5,
-    color: '#222',
+    color: '#333',
   },
   description: {
-    fontSize: 15,
+    fontSize: 14,
     lineHeight: 25,
-    color: '#222',
+    color: '#333',
   },
 });

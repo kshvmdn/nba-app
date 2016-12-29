@@ -81,13 +81,13 @@ const s = StyleSheet.create({
   },
   games: {
     padding: 0,
-    marginHorizontal: -0.5,
+    marginHorizontal: -0.25,
   },
   game: {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    marginHorizontal: 0.5,
+    marginHorizontal: 0.25,
     backgroundColor: '#eee',
     padding: 10,
   },
@@ -109,11 +109,11 @@ const s = StyleSheet.create({
     fontFamily: 'sans-serif-medium',
     fontSize: 18,
     marginTop: 10,
-    color: '#222',
+    color: '#333',
   },
   datetime: {
     fontSize: 15,
     fontFamily: 'sans-serif-light',
-    color: '#222',
+    color: '#333',
   },
 });

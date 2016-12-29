@@ -50,8 +50,6 @@ export default class GameLogBox extends Component {
     if (this.state.loading)
       return <View style={s.loadingBox}><ActivityIndicator color={'#1F6CB0'} /></View>;
 
-    console.log(this.state.data);
-
     return (
       <ScrollView
         style={s.games}

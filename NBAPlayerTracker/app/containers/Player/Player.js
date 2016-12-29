@@ -105,8 +105,9 @@ const s = StyleSheet.create({
   },
   boxHeading: {
     color: '#eee',
-    fontSize: 18,
+    fontSize: 16,
     fontFamily: 'sans-serif-condensed',
     padding: 10,
+    backgroundColor: '#333',
   },
 });

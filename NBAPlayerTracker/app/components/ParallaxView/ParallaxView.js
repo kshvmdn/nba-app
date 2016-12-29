@@ -23,7 +23,7 @@ export default class ParallaxView extends Component {
     return (
       <ParallaxScrollView
         backgroundColor={'#063968'}
-        contentBackgroundColor={'#777'}
+        contentBackgroundColor={'#333'}
         parallaxHeaderHeight={157.5}
         stickyHeaderHeight={60}
         renderStickyHeader={() => (
