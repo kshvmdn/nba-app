@@ -45,9 +45,16 @@ export default class Player extends Component {
 
   render() {
     let { player } = this.props;
+    let { player_info, headline_stats } = player;
+
     return (
       <View style={s.container}>
-        <ParallaxView player={this.props.player} handleLinkPress={this.handleLinkPress.bind(this, `http://nba.com/players/${player.first_name}/${player.last_name}/${player.person_id}`)}>
+        <ParallaxView
+          player={this.props.player}
+          handleLinkPress={this.handleLinkPress.bind(this, `http://nba.com/players/${player_info.first_name}/${player_info.last_name}/${player.person_id}`)}>
+
+
+
         </ParallaxView>
       </View>
     );
