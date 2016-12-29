@@ -104,8 +104,8 @@ const s = StyleSheet.create({
     paddingHorizontal: 20,
   },
   rowImage: {
-    height: 35,
-    width: 35,
+    height: 40,
+    width: 40,
   },
   playerHeadshot: {
     borderRadius: 100,
@@ -116,19 +116,20 @@ const s = StyleSheet.create({
   },
   playerNameText: {
     color: '#1F6CB0',
+    fontSize: 17,
   },
   playerMeta: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   playerMetaText: {
-    fontSize: 13,
+    fontSize: 14,
     color: '#777',
   },
   playerMetaTextDivider: {
     marginHorizontal: 6,
-    fontSize: 18,
-    color: '#666',
+    fontSize: 19,
+    color: '#aaa',
     fontFamily: 'sans-serif-light',
   },
   logoContainer: {

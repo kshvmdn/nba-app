@@ -45,7 +45,7 @@ export default class Home extends Component {
     .then(response => response.json())
     .then(data => data.sort((a, b) => (a.display_first_last > b.display_first_last) ? 1 : ((a.display_first_last < b.display_first_last) ? -1 : 0)))
     .then(data => this.setState({ currentData: data, playerData: data, loading: false }, this.filterData.bind(this)))
-    .catch(err => console.error(err))
+    .catch(err => this.setState({ currentData: data, playerData: data, loading: false }, () => console.error(err)))
   }
 
   filterData() {
@@ -198,7 +198,7 @@ const s = StyleSheet.create({
   },
   filterText: {
     textAlign: 'center',
-    fontSize: 10,
+    fontSize: 13,
     fontWeight: 'bold',
     color: '#333',
   },

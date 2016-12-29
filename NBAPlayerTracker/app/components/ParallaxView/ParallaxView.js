@@ -23,7 +23,7 @@ export default class ParallaxView extends Component {
     return (
       <ParallaxScrollView
         backgroundColor={'#063968'}
-        contentBackgroundColor={'#fff'}
+        contentBackgroundColor={'#777'}
         parallaxHeaderHeight={157.5}
         stickyHeaderHeight={60}
         renderStickyHeader={() => (
@@ -47,13 +47,14 @@ export default class ParallaxView extends Component {
             <View style={s.fgRight}>
               <View style={s.fgRightTop}>
                 <View style={s.playerInfo}>
-                  <Text style={s.playerNameText}>{player.display_first_last}</Text>
+                  <View style={s.playerInfoMain}>
+                    <Text style={s.playerNumber}>#{player.player_info.jersey}</Text>
+                    <Text style={s.playerNameText}>{player.display_first_last}</Text>
+                  </View>
                   <View style={s.playerMeta}>
-                    <Text style={s.playerMetaText}>{player.team_abbreviation}</Text>
-                    <Text style={s.playerMetaTextDivider}>|</Text>
-                    <Text style={s.playerMetaText}>#{player.player_info.jersey}</Text>
-                    <Text style={s.playerMetaTextDivider}>|</Text>
                     <Text style={s.playerMetaText}>{player.player_info.position.split('-').map(s => s[0]).join('-')}</Text>
+                    <Text style={s.playerMetaTextDivider}>|</Text>
+                    <Text style={s.playerMetaText}>{player.team_city} {player.team_name}</Text>
                   </View>
                 </View>
                 <View style={s.teamLogo}>
@@ -90,7 +91,7 @@ const s = StyleSheet.create({
   headerName: {
     color: '#eee',
     alignItems: 'center',
-    fontSize: 16,
+    fontSize: 18,
     fontFamily: 'sans-serif-medium',
   },
   headerImage: {
@@ -106,6 +107,7 @@ const s = StyleSheet.create({
     borderBottomColor: '#777',
   },
   fgLeft: {
+    flex: 0.8,
     alignItems: 'center',
   },
   headshot: {
@@ -113,7 +115,7 @@ const s = StyleSheet.create({
     height: 142.5,
   },
   fgRight: {
-    flex: 1,
+    flex: 1.1,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
@@ -121,7 +123,6 @@ const s = StyleSheet.create({
   fgRightTop: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
   },
   fgRightBottom: {
     flexDirection: 'row',
@@ -131,9 +132,19 @@ const s = StyleSheet.create({
   playerInfo: {
     padding: 5,
   },
+  playerInfoMain: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  playerNumber: {
+    marginRight: 8,
+    fontSize: 30,
+    color: '#eee',
+    fontFamily: 'sans-serif-light',
+  },
   playerNameText: {
     color: '#eee',
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: 'bold',
   },
   playerMeta: {
@@ -141,12 +152,12 @@ const s = StyleSheet.create({
     alignItems: 'center',
   },
   playerMetaText: {
-    fontSize: 13,
+    fontSize: 15,
     color: '#ddd',
   },
   playerMetaTextDivider: {
     marginHorizontal: 6,
-    fontSize: 18,
+    fontSize: 20,
     color: '#eee',
     marginBottom: 2,
     fontFamily: 'sans-serif-light',
@@ -164,7 +175,7 @@ const s = StyleSheet.create({
     padding: 10,
   },
   linkText: {
-    fontSize: 11,
+    fontSize: 15,
     color: '#eee',
     borderRadius: 50,
     borderColor: '#eee',

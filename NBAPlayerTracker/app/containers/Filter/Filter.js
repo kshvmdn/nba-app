@@ -133,6 +133,7 @@ const s = StyleSheet.create({
   },
   rowText: {
     color: '#333',
+    fontSize: 16,
   },
   rowSelectedIndicator: {
     flex: 1,
