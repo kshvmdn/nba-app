@@ -50,20 +50,15 @@ export default class Leaders extends Component {
   }
 
   handlePress(playerId) {
-    if (!this.props.players)
+    if (!(this.props.players && playerId))
       return;
 
     let currentPlayer;
 
     for (let player of this.props.players) {
-      if (player.person_id === playerId) {
-        currentPlayer = player;
-        break;
-      }
+      if (player.person_id === playerId)
+        return Actions.playerCard({ player: currentPlayer })
     }
-
-    if (currentPlayer)
-      return Actions.playerCard({ player: currentPlayer })
   }
 
   formatDatetime(datetime) {
