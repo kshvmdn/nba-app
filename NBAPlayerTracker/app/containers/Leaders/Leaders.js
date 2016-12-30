@@ -73,7 +73,9 @@ export default class Leaders extends Component {
 
     let component;
 
-    if (loading)
+    if (this.state.error)
+      component = <View style={s.loadingContainer}><Text style={{ padding: 20, color: '#333', fontSize: 32 }}>Couldn't load data, try again later.</Text></View>
+    else if (loading)
       component = <View style={s.loadingContainer}><ActivityIndicator color={'#1F6CB0'} size={'large'} /></View>
     else {
       component = (
