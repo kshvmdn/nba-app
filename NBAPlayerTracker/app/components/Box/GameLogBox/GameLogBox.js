@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native';
 
-import * as c from '../../constants';
+import LoadingBox from '../LoadingBox';
+import * as c from '../../../constants';
 
 export default class GameLogBox extends Component {
   constructor(props) {
@@ -48,7 +49,7 @@ export default class GameLogBox extends Component {
     let component;
 
     if (this.state.loading)
-      return <View style={s.loadingBox}><ActivityIndicator color={'#1F6CB0'} /></View>;
+      return <LoadingBox />
 
     return (
       <ScrollView
@@ -81,15 +82,11 @@ export default class GameLogBox extends Component {
 }
 
 const s = StyleSheet.create({
-  loadingBox: {
-    backgroundColor: '#eee',
-    paddingVertical: 30,
-  },
   games: {
     padding: 0,
   },
   game: {
-    backgroundColor: '#eee',
+    backgroundColor: '#F7F7F7',
     padding: 10,
     width: require('Dimensions').get('window').width,
   },

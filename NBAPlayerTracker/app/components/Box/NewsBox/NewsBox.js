@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
+import LoadingBox from '../LoadingBox';
+
 export default class NewsBox extends Component {
   constructor(props) {
     super(props);
@@ -40,7 +42,7 @@ export default class NewsBox extends Component {
     let component;
 
     if (this.state.loading)
-      return <View style={s.loadingBox}><ActivityIndicator color={'#1F6CB0'} /></View>;
+      return <LoadingBox />
 
     return (
       <View style={s.entries}>
@@ -57,15 +59,11 @@ export default class NewsBox extends Component {
 }
 
 const s = StyleSheet.create({
-  loadingBox: {
-    backgroundColor: '#eee',
-    paddingVertical: 30,
-  },
   entries: {
     marginVertical: -0.25,
   },
   entry: {
-    backgroundColor: '#eee',
+    backgroundColor: '#F7F7F7',
     padding: 10,
     paddingVertical: 15,
     marginVertical: 0.25,

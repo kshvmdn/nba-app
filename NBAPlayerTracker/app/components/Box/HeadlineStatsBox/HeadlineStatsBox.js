@@ -33,7 +33,7 @@ const s = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#eee',
+    backgroundColor: '#F7F7F7',
     borderWidth: 0,
     borderRightWidth: 0.25,
     borderLeftWidth: 0.25,
