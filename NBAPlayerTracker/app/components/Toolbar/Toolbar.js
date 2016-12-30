@@ -19,7 +19,7 @@ export default class Toolbar extends Component {
       <Icon.ToolbarAndroid
         onActionSelected={this.onActionSelected.bind(this)}
         style={s.toolbar}
-        subtitleColor={'#fff'}
+        subtitleColor={'#f6f6f6'}
         title={this.props.title || 'NBA Player Tracker'}
         titleColor={'#fff'}
         {...this.props} />
@@ -29,7 +29,7 @@ export default class Toolbar extends Component {
 
 const s = StyleSheet.create({
   toolbar: {
-    height: 60,
+    height: 56,
     backgroundColor: '#1F6CB0',
   },
 })

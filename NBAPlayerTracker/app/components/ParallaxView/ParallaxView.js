@@ -29,7 +29,7 @@ export default class ParallaxView extends Component {
         renderStickyHeader={() => (
           <View style={s.header}>
             <TouchableOpacity style={s.headerTouchable} onPress={Actions.pop.bind(this)}>
-              <Icon name='arrow-back' size={25} color={'#eee'}/>
+              <Icon name='arrow-back' size={25} color={'#F7F7F7'}/>
             </TouchableOpacity>
             <Text style={s.headerName}>{player.display_first_last}</Text>
             <Image
@@ -89,7 +89,7 @@ const s = StyleSheet.create({
     paddingHorizontal: 10,
   },
   headerName: {
-    color: '#eee',
+    color: '#F7F7F7',
     alignItems: 'center',
     fontSize: 18,
     fontFamily: 'sans-serif-medium',
@@ -139,11 +139,11 @@ const s = StyleSheet.create({
   playerNumber: {
     marginRight: 8,
     fontSize: 30,
-    color: '#eee',
+    color: '#F7F7F7',
     fontFamily: 'sans-serif-light',
   },
   playerNameText: {
-    color: '#eee',
+    color: '#F7F7F7',
     fontSize: 20,
     fontWeight: 'bold',
   },
@@ -158,7 +158,7 @@ const s = StyleSheet.create({
   playerMetaTextDivider: {
     marginHorizontal: 6,
     fontSize: 20,
-    color: '#eee',
+    color: '#F7F7F7',
     marginBottom: 2,
     fontFamily: 'sans-serif-light',
   },
@@ -176,9 +176,9 @@ const s = StyleSheet.create({
   },
   linkText: {
     fontSize: 15,
-    color: '#eee',
+    color: '#F7F7F7',
     borderRadius: 50,
-    borderColor: '#eee',
+    borderColor: '#F7F7F7',
     borderWidth: 1,
     paddingVertical: 7,
     paddingHorizontal: 15,

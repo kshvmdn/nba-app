@@ -132,13 +132,18 @@ export default class Home extends Component {
       );
     }
 
+    let actions = [
+      { title: 'League Leaders', iconName: 'whatshot', iconSize: 25, show: 'always', fn: Actions.leaders.bind(this, { players: this.state.playerData }) },
+    ];
+
     return (
       <View style={s.container}>
         <StatusBar />
-        <Toolbar />
+        <Toolbar actions={actions}/>
         <TextInput
+          autoCapitalize={'characters'}
           onChange={this.updateSearchFilter.bind(this)}
-          placeholder={'Search'}
+          placeholder={'SEARCH'}
           style={s.searchBar}
           underlineColorAndroid={'rgba(0,0,0,0)'}
           clearButtonMode={'while-editing'}
@@ -164,17 +169,18 @@ export default class Home extends Component {
 const s = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#eee',
+    backgroundColor: '#F7F7F7',
   },
   searchBar: {
     backgroundColor: 'transparent',
     padding: 5,
     paddingLeft: 15,
-    color: '#000',
-    height: 50,
-    fontFamily: 'sans-serif-light',
+    color: '#333',
+    height: 40,
     borderBottomWidth: 0.5,
     borderBottomColor: 'rgba(0, 0, 0, 0.1)',
+    fontFamily: 'sans-serif-light',
+    fontSize: 14,
   },
   filter: {
     flexDirection: 'row',
@@ -198,9 +204,9 @@ const s = StyleSheet.create({
   },
   filterText: {
     textAlign: 'center',
-    fontSize: 13,
-    fontWeight: 'bold',
+    fontSize: 14,
     color: '#333',
+    fontFamily: 'sans-serif-light',
   },
   noResults: {
     flex: 1,

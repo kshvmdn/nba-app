@@ -12,10 +12,10 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import * as c from '../../constants';
 import ParallaxView from '../../components/ParallaxView';
-import HeadlineStatsBox from '../../components/HeadlineStatsBox';
-import GameLogBox from '../../components/GameLogBox';
-import UpcomingGamesBox from '../../components/UpcomingGamesBox';
-import NewsBox from '../../components/NewsBox';
+import HeadlineStatsBox from '../../components/Box/HeadlineStatsBox';
+import GameLogBox from '../../components/Box/GameLogBox';
+import UpcomingGamesBox from '../../components/Box/UpcomingGamesBox';
+import NewsBox from '../../components/Box/NewsBox';
 
 export default class Player extends Component {
   constructor(props) {
@@ -95,7 +95,7 @@ const s = StyleSheet.create({
   contentBox: {
   },
   boxHeading: {
-    color: '#eee',
+    color: '#F7F7F7',
     fontSize: 16,
     fontFamily: 'sans-serif-condensed',
     padding: 10,

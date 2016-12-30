@@ -17,14 +17,7 @@ export default class Filter extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      selected: this.props.selected,
-      backIcon: null,
-    };
-  }
-
-  componentWillMount() {
-    Icon.getImageSource('arrow-back', 25, 'white').then(source => this.setState({ backIcon: source }));
+    this.state = { selected: this.props.selected };
   }
 
   componentWillReceiveProps(nextProps) {
@@ -44,7 +37,7 @@ export default class Filter extends Component {
       return this.setState({ selected: [selection, ...selected] })
 
     selected.splice(index, 1)
-    this.setState({ selected })
+    this.setState({ selected });
   }
 
   renderRow(rowData, sectionId, rowId, highlightRow) {
@@ -99,7 +92,7 @@ export default class Filter extends Component {
         <Toolbar
           actions={actions}
           onIconClicked={Actions.pop.bind(this)}
-          navIcon={this.state.backIcon}
+          navIconName={'arrow-back'}
           subtitle={this.props.optionType} />
         <ListView
           dataSource={ds.cloneWithRows(source)}
