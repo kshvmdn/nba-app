@@ -3,14 +3,15 @@ import {
   StatusBar,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   View
 } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Actions } from 'react-native-router-flux';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 import PlayerList from '../../components/PlayerList';
+import SearchBar from '../../components/SearchBar';
 import Toolbar from '../../components/Toolbar';
 import * as c from '../../constants';
 
@@ -101,7 +102,6 @@ export default class Home extends Component {
   }
 
   updateSearchFilter(event) {
-    event.persist();
     let searchText = event.nativeEvent.text.toLowerCase().trim();
 
     if (searchText === this.state.filters.search)
@@ -140,14 +140,7 @@ export default class Home extends Component {
       <View style={s.container}>
         <StatusBar />
         <Toolbar actions={actions}/>
-        <TextInput
-          autoCapitalize={'characters'}
-          onChange={this.updateSearchFilter.bind(this)}
-          placeholder={'SEARCH'}
-          style={s.searchBar}
-          underlineColorAndroid={'rgba(0,0,0,0)'}
-          clearButtonMode={'while-editing'}
-          value={this.state.searchText} />
+        <SearchBar onSearchChange={this.updateSearchFilter.bind(this)} />
         <View style={s.filter}>
           <TouchableOpacity
             style={[s.filterContainer, s.filterContainerLeft]}
@@ -171,17 +164,6 @@ const s = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F7F7F7',
   },
-  searchBar: {
-    backgroundColor: 'transparent',
-    padding: 5,
-    paddingLeft: 15,
-    color: '#333',
-    height: 40,
-    borderBottomWidth: 0.5,
-    borderBottomColor: 'rgba(0, 0, 0, 0.1)',
-    fontFamily: 'sans-serif-light',
-    fontSize: 14,
-  },
   filter: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -204,8 +186,8 @@ const s = StyleSheet.create({
   },
   filterText: {
     textAlign: 'center',
-    fontSize: 14,
-    color: '#333',
+    fontSize: 16,
+    color: '#444',
     fontFamily: 'sans-serif-light',
   },
   noResults: {
