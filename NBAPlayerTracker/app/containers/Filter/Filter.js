@@ -16,7 +16,6 @@ import * as c from '../../constants';
 export default class Filter extends Component {
   constructor(props) {
     super(props);
-
     this.state = { selected: this.props.selected };
   }
 
@@ -93,7 +92,7 @@ export default class Filter extends Component {
           actions={actions}
           onIconClicked={Actions.pop.bind(this)}
           navIconName={'arrow-back'}
-          subtitle={this.props.optionType} />
+          subtitle={`${this.props.optionType}${this.state.selected.length === 0 ? '' : ` (${this.state.selected.length})`}`} />
         <ListView
           dataSource={ds.cloneWithRows(source)}
           enableEmptySections={true}

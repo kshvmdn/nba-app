@@ -176,7 +176,7 @@ const s = StyleSheet.create({
     borderWidth: 0,
     borderColor: 'rgba(0, 0, 0, 0.1)',
     flex: 1,
-    paddingVertical: 12.5,
+    paddingVertical: 10,
   },
   filterContainerLeft: {
     borderRightWidth: 0.25,
@@ -186,7 +186,7 @@ const s = StyleSheet.create({
   },
   filterText: {
     textAlign: 'center',
-    fontSize: 16,
+    fontSize: 15,
     color: '#444',
     fontFamily: 'sans-serif-light',
   },

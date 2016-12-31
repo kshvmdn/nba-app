@@ -38,7 +38,7 @@ export default class NewsBox extends Component {
       if (!data || data.length === 0)
         throw new Error('No data')
 
-      return this.setState({ data: data.slice(0, 3), loading: false })
+      return this.setState({ data: data.slice(0, 5), loading: false })
     })
     .catch(err => this.setState({ data: [], loading: false }, () => this.props.handleError(err, 'NEWS')));
   }
@@ -52,7 +52,7 @@ export default class NewsBox extends Component {
     return (
       <View style={s.entries}>
         {this.state.data.map((entry, i) => (
-          <View key={i} style={s.entry}>
+          <View key={i} style={[s.entry, (i === 0) && { marginTop: 0 }, (i == this.state.data.length - 1) && { marginBottom: 0 } ]}>
             <Text style={s.caption}>{entry.ListItemCaption}</Text>
             <Text style={s.date}>{this.formatDate(entry.ListItemPubDate)}</Text>
             <Text style={s.description}>{entry.ListItemDescription}</Text>
@@ -70,13 +70,11 @@ const s = StyleSheet.create({
   entry: {
     backgroundColor: '#F7F7F7',
     padding: 10,
-    paddingVertical: 15,
-    marginVertical: 0.25,
+    marginVertical: 0.5,
   },
   caption: {
     fontSize: 14,
     fontFamily: 'sans-serif-medium',
-    lineHeight: 25,
     color: '#333',
   },
   date: {
@@ -87,7 +85,7 @@ const s = StyleSheet.create({
   },
   description: {
     fontSize: 14,
-    lineHeight: 25,
     color: '#333',
+    lineHeight: 25,
   },
 });

@@ -79,14 +79,14 @@ export default class Leaders extends Component {
       component = (
         <ScrollView style={s.content}>
           {leaders.items.map((item, i) => (
-            <View key={i} style={s.category}>
+            <View key={i} style={[s.category, (i === 0) && { marginTop: 0 }, ( i === leaders.items.length -1 ) && { marginBottom: 15 }]}>
               <Text style={s.categoryHeading}>{item.title}</Text>
               <ScrollView
                 horizontal={true}
                 style={s.listItems}>
                 {item.playerstats.map((player, j) => (
                   <TouchableOpacity key={`${i}, ${j}`} onPress={this.handlePress.bind(this, player.PLAYER_ID)}>
-                    <View style={s.listItem}>
+                    <View style={[s.listItem, (j === 0) && { marginLeft: 0 }, (j === item.playerstats.length - 1) && { marginRight: 0 } ]}>
                       <View style={s.listItemTop}>
                         <Image
                           style={s.listItemHeadshot}
@@ -94,11 +94,11 @@ export default class Leaders extends Component {
                       </View>
                       <View style={s.listItemBottom}>
                         <View style={s.listItemBottomLeft}>
-                          <Text style={s.listItemValue}>{player[item.name]}</Text>
-                        </View>
-                        <View style={s.listItemBottomRight}>
                           <Text style={s.listItemPlayerName}>{player.PLAYER_NAME}</Text>
                           <Text style={s.listItemPlayerTeam}>{player.TEAM_ABBREVIATION}</Text>
+                        </View>
+                        <View style={s.listItemBottomRight}>
+                          <Text style={s.listItemValue}>{player[item.name]}</Text>
                         </View>
                       </View>
                     </View>
@@ -157,8 +157,9 @@ const s = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    padding: 20,
-    backgroundColor: '#fff',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    backgroundColor: '#f0f0f0',
   },
   switchText: {
     color: '#777',
@@ -170,63 +171,57 @@ const s = StyleSheet.create({
   },
   lastUpdated: {
     padding: 10,
-    backgroundColor: '#fff',
+    backgroundColor: '#f0f0f0',
   },
   lastUpdatedText: {
     fontFamily: 'sans-serif-condensed',
-    color: '#777',
+    color: '#222',
     fontSize: 12,
   },
   content: {
     paddingVertical: 10,
+    marginBottom: 10,
   },
   category: {
-    marginBottom: 10,
+    marginVertical: 10,
   },
   categoryHeading: {
     fontFamily: 'sans-serif-medium',
     color: '#1F6CB0',
     fontSize: 16,
-    marginBottom: 3,
-    marginLeft: 5,
+    marginLeft: 15,
+    marginBottom: 5,
   },
   listItems: {
-    marginHorizontal: 4,
-    marginBottom: 10,
+    marginHorizontal: 15,
   },
   listItem: {
-    marginHorizontal: 2.5,
-    width: 150,
-    height: 140,
+    marginHorizontal: 1.5,
+    width: ((require('Dimensions').get('window').width / 2) - 16.5),
+    height: 120,
     backgroundColor: '#fff',
-    padding: 3,
+    flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
   },
   listItemTop: {
-    paddingVertical: 5,
-    // backgroundColor: 'orange',
     alignItems: 'center',
     justifyContent: 'center',
   },
   listItemBottom: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'stretch',
-    // backgroundColor: 'purple',
+    alignItems: 'center',
+    alignSelf: 'stretch',
   },
   listItemBottomLeft: {
-    flex: 0.5,
-    // backgroundColor: 'green',
-    alignItems: 'center',
-    justifyContent: 'center',
-    minWidth: 40,
+    flexDirection: 'column',
+    paddingLeft: 12.5,
   },
   listItemBottomRight: {
-    flex: 1,
-    // backgroundColor: 'blue',
-    flexDirection: 'column',
-    paddingHorizontal: 2,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingRight: 12.5,
   },
   listItemHeadshot: {
     height: 70,
@@ -237,9 +232,10 @@ const s = StyleSheet.create({
     fontSize: 20,
     color: '#333',
     fontFamily: 'sans-serif-light',
+    textAlign: 'right',
   },
   listItemPlayerName: {
-    fontSize: 15,
+    fontSize: 16,
     color: '#333',
   },
   listItemPlayerTeam: {
