@@ -12,7 +12,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import * as c from '../../constants';
 
-export default class ParallaxView extends Component {
+export default class PlayerHeader extends Component {
   constructor(props) {
     super(props);
   }
@@ -29,7 +29,7 @@ export default class ParallaxView extends Component {
         renderStickyHeader={() => (
           <View style={s.header}>
             <TouchableOpacity style={s.headerTouchable} onPress={Actions.pop.bind(this)}>
-              <Icon name='arrow-back' size={25} color={'#F7F7F7'}/>
+              <Icon name='close' size={25} color={'#F7F7F7'}/>
             </TouchableOpacity>
             <Text style={s.headerName}>{player.display_first_last}</Text>
             <Image
