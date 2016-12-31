@@ -11,7 +11,7 @@ import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import * as c from '../../constants';
-import ParallaxView from '../../components/ParallaxView';
+import PlayerHeader from '../../components/PlayerHeader';
 import HeadlineStatsBox from '../../components/Box/HeadlineStatsBox';
 import GameLogBox from '../../components/Box/GameLogBox';
 import UpcomingGamesBox from '../../components/Box/UpcomingGamesBox';
@@ -47,7 +47,7 @@ export default class Player extends Component {
 
     return (
       <View style={s.container}>
-        <ParallaxView
+        <PlayerHeader
           player={this.props.player}
           handleLinkPress={this.handleLinkPress.bind(
             this,
@@ -80,7 +80,7 @@ export default class Player extends Component {
             )}
 
           </View>
-        </ParallaxView>
+        </PlayerHeader>
       </View>
     );
   }
