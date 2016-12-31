@@ -41,7 +41,12 @@ export default class UpcomingGamesBox extends Component {
         return o;
       });
     })
-    .then(data => this.setState({ data, loading: false }))
+    .then(data => {
+      if (!data || data.length === 0)
+        throw new Error('No data')
+
+      return this.setState({ data, loading: false })
+    })
     .catch(err => this.setState({ data: [], loading: false }, () => this.props.handleError(err, 'UPCOMING')));
 
   }

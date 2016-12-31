@@ -34,7 +34,12 @@ export default class NewsBox extends Component {
     })
     .then(response => response.json())
     .then(news => news['PlayerRotowires'])
-    .then(data => this.setState({ data: data.slice(0, 3), loading: false }))
+    .then(data => {
+      if (!data || data.length === 0)
+        throw new Error('No data')
+
+      return this.setState({ data: data.slice(0, 3), loading: false })
+    })
     .catch(err => this.setState({ data: [], loading: false }, () => this.props.handleError(err, 'NEWS')));
   }
 
