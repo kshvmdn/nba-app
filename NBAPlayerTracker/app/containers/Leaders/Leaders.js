@@ -53,11 +53,9 @@ export default class Leaders extends Component {
     if (!(this.props.players && playerId))
       return;
 
-    let currentPlayer;
-
     for (let player of this.props.players) {
       if (player.person_id === playerId)
-        return Actions.playerCard({ player: currentPlayer })
+        return Actions.playerCard({ player })
     }
   }
 
