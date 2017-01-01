@@ -81,6 +81,7 @@ export default class PlayerList extends Component {
         <ListView
           dataSource={this.state.ds}
           enableEmptySections={true}
+          ref={c => (this.listView = c)}
           renderRow={this.renderRow.bind(this)}
           renderSeparator={this.renderSeparator.bind(this)}
           style={s.listView} />

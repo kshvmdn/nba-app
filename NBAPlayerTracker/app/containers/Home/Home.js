@@ -88,7 +88,7 @@ export default class Home extends Component {
       return true;
     })
 
-    this.setState({ currentData })
+    this.setState({ currentData }, () => this.playerList && this.playerList.listView && this.playerList.listView.scrollTo())
   }
 
   updateTeamFilter(teams) {
@@ -120,17 +120,13 @@ export default class Home extends Component {
       );
     }
 
-    let component;
-
-    if (this.state.currentData.length === 0) {
-      component = <View style={s.noResults}><Text style={s.noResultsText}>No players found.</Text></View>;
-    } else {
-      component = (
-        <View style={s.list}>
-          <PlayerList data={this.state.currentData} />
-        </View>
-      );
-    }
+    let component = (
+      <View style={s.list}>
+        <PlayerList
+          data={this.state.currentData}
+          ref={c => (this.playerList = c)} />
+      </View>
+    );
 
     let actions = [
       { title: 'League Leaders', iconName: 'whatshot', iconSize: 25, show: 'always', fn: Actions.leaders.bind(this, { players: this.state.playerData }) },
@@ -171,6 +167,7 @@ const s = StyleSheet.create({
     borderWidth: 0,
     borderBottomWidth: 0.5,
     borderColor: 'rgba(0, 0, 0, 0.1)',
+    backgroundColor: 'rgba(255, 255, 255, 0.4)',
   },
   filterContainer: {
     borderWidth: 0,

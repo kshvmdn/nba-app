@@ -36,7 +36,6 @@ export default class SearchBar extends Component {
     return (
       <View onStartShouldSetResponder={this.dismissKeyboard.bind(this)}>
         <View style={s.searchBar}>
-
           {this.state.isFocused ? (
             <TouchableOpacity onPress={this.dismissKeyboard.bind(this)}>
               <Icon name={'arrow-back'} size={20} color={'#737373'} />
@@ -55,19 +54,11 @@ export default class SearchBar extends Component {
 
           {this.state.isFocused && (
             <TouchableOpacity onPress={this.onClose.bind(this)}>
-              <Icon style={{ paddingRight: 10 }} name={'close'} size={20} color={'#737373'} />
+              <Icon style={{ paddingRight: 15 }} name={'close'} size={20} color={'#737373'} />
             </TouchableOpacity>
           )}
 
         </View>
-
-        {/*<TextInput
-          autoCapitalize={'characters'}
-          onChange={this.updateSearchFilter.bind(this)}
-          placeholder={'Search'}
-          style={s.searchBar}
-          underlineColorAndroid={'transparent'}
-          value={this.state.searchText} />*/}
       </View>
     );
   }
@@ -80,15 +71,15 @@ const s = StyleSheet.create({
     backgroundColor: 'transparent',
     borderBottomWidth: 0.5,
     borderBottomColor: 'rgba(0, 0, 0, 0.1)',
-    paddingLeft: 10,
-    height: 50,
+    paddingLeft: 15,
+    height: 45,
   },
   searchBarInput: {
     flex: 1,
     fontFamily: 'sans-serif-light',
     backgroundColor: 'transparent',
     color: '#444',
-    paddingLeft: 15,
+    paddingLeft: 13,
     fontSize: 16,
   },
 })

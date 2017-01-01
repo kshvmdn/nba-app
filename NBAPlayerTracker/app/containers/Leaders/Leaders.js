@@ -235,7 +235,7 @@ const s = StyleSheet.create({
     textAlign: 'right',
   },
   listItemPlayerName: {
-    fontSize: 16,
+    fontSize: 15,
     color: '#333',
   },
   listItemPlayerTeam: {

@@ -71,7 +71,7 @@ export default class UpcomingGamesBox extends Component {
                 source={{uri: `${c.ASSETS}/images/teams/${game.visitor_team_abbreviation}.png`}} />
             </View>
             <Text style={s.teamsText}>{game.home_team_abbreviation} AT {game.visitor_team_abbreviation}</Text>
-            <Text style={s.datetime}>{game.game_date} – {game.game_time} ET</Text>
+            <Text style={s.datetime}>{game.game_date} – {game.game_time[0] === '0' ? game.game_time.slice(1) : game.game_time} ET</Text>
           </View>
         ))}
       </ScrollView>
