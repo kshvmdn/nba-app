@@ -52,7 +52,7 @@ export default class NewsBox extends Component {
     return (
       <View style={s.entries}>
         {this.state.data.map((entry, i) => (
-          <View key={i} style={[s.entry, (i === 0) && { marginTop: 0 }, (i == this.state.data.length - 1) && { marginBottom: 0 } ]}>
+          <View key={i} style={[s.entry, (i === 0) && { marginTop: 0 }, (i == this.state.data.length - 1) && { marginBottom: 0 }]}>
             <Text style={s.caption}>{entry.ListItemCaption}</Text>
             <Text style={s.date}>{this.formatDate(entry.ListItemPubDate)}</Text>
             <Text style={s.description}>{entry.ListItemDescription}</Text>

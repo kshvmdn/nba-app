@@ -79,7 +79,7 @@ export default class Leaders extends Component {
       component = (
         <ScrollView style={s.content}>
           {leaders.items.map((item, i) => (
-            <View key={i} style={[s.category, (i === 0) && { marginTop: 0 }, ( i === leaders.items.length -1 ) && { marginBottom: 15 }]}>
+            <View key={i} style={[s.category, (i === 0) && { marginTop: 0 }, ( i === leaders.items.length -1 ) && { marginBottom: 20 }]}>
               <Text style={s.categoryHeading}>{item.title}</Text>
               <ScrollView
                 horizontal={true}
@@ -180,7 +180,6 @@ const s = StyleSheet.create({
   },
   content: {
     paddingVertical: 10,
-    marginBottom: 10,
   },
   category: {
     marginVertical: 10,
