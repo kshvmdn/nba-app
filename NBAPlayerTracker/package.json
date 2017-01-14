@@ -13,7 +13,6 @@
     "react-native-material-switch": "github:chapsule/react-native-material-switch",
     "react-native-parallax-scroll-view": "^0.19.0",
     "react-native-router-flux": "^3.37.0",
-    "react-native-svg-uri": "^1.1.2",
     "react-native-vector-icons": "^3.0.0"
   },
   "devDependencies": {
