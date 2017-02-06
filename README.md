@@ -39,3 +39,6 @@
 ### Contribute
 
 Have a request or find a bug? This project is completely open source, feel free to open an issue or submit a pull request.
+
+The project uses a variety of [tools](./data) (incl. [Python 3](https://www.python.org/download/releases/3.0/), [jq](https://stedolan.github.io/jq/) and [cairosvg](http://cairosvg.org/)) to aggregate logo images and player data. This data is served from a public domain (http://nba.kshvmdn.com) and used within the application. If you're interested in local development, you generally _shouldn't_ need to worry about this stuff though.
+
