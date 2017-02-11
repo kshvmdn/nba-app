@@ -7,5 +7,5 @@ do
   convert ${TEAM}.png -resize 256x256 ${TEAM}.png
 done
 
-rm *.svg
+rm -f *.svg
 mkdir -p ../docs/assets/images/teams; mv *.png $_
