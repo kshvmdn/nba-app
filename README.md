@@ -6,13 +6,7 @@
 
 ### Screenshots
 
-<img src="./art/screenshots/1.png" width="150">
-<img src="./art/screenshots/2.png" width="150">
-<img src="./art/screenshots/3.png" width="150">
-<img src="./art/screenshots/4.png" width="150">
-<img src="./art/screenshots/5.png" width="150">
-<img src="./art/screenshots/6.png" width="150">
-<img src="./art/screenshots/7.png" width="150">
+<img src="./art/screenshots/1.png" width="150"> <img src="./art/screenshots/2.png" width="150"> <img src="./art/screenshots/3.png" width="150"> <img src="./art/screenshots/4.png" width="150"> <img src="./art/screenshots/5.png" width="150"> <img src="./art/screenshots/6.png" width="150"> <img src="./art/screenshots/7.png" width="150">
 
 ### Installation
 
